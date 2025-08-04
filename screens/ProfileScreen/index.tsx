@@ -35,14 +35,14 @@ export const ProfileScreen = () => {
       <View style={styles.profileSection}>
         <View style={styles.profileImageContainer}>
           <Image
-            source={require("../../assets/profiles/profile1.jpg")}
+            source={require("../../assets/profiles/man-profile2.jpg")}
             style={styles.profileImage}
           />
           <TouchableOpacity style={styles.editButton}>
             <Icon name='edit' size={16} color='#666' />
           </TouchableOpacity>
         </View>
-        <Text style={styles.profileName}>박준석, 34</Text>
+        <Text style={styles.profileName}>박준상 29</Text>
         <Text style={styles.profileLocation}>서울, 강남구</Text>
       </View>
 
