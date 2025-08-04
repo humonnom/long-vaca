@@ -18,8 +18,8 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
   };
 
   const handleCardPress = () => {
-    // 카드 전체 터치 시 프로필 상세로 이동하는 로직
     console.log(`프로필 보기: ${user.name}`);
+    // 프로필 클릭 수 수집
   };
 
   return (
@@ -45,10 +45,9 @@ export const UserCard = ({ user, onLikeToggle }: UserCardProps) => {
         </View>
       </TouchableOpacity>
 
-      {/* 하트 버튼 */}
       <TouchableOpacity
         style={styles.heartButton}
-        onPress={handleLikePress}
+        onPress={isLiked ? () => {} : handleLikePress} // Prevent action if already liked
         activeOpacity={0.8}
       >
         <View

@@ -8,14 +8,12 @@ interface UserGridProps {
 }
 
 export const UserGrid = ({ users }: UserGridProps) => {
-  const renderUserCard = (user: User) => {
-    return <UserCard key={user.id} user={user} />;
-  };
-
   return (
     <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
       <View style={styles.userGrid}>
-        {users.map((user) => renderUserCard(user))}
+        {users.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
       </View>
     </ScrollView>
   );
