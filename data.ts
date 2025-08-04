@@ -5,9 +5,11 @@ export const mockUsers: User[] = [
     id: 1,
     name: "さくら",
     age: 25,
+    gender: "female",
     city: "東京",
     image: require("./assets/profiles/profile1.jpg"),
     isOnline: true,
+    isLiked: false,
   },
   {
     id: 2,
@@ -15,6 +17,8 @@ export const mockUsers: User[] = [
     age: 29,
     city: "大阪",
     image: require("./assets/profiles/profile2.jpg"),
+    gender: "female",
+    isLiked: true,
   },
   {
     id: 3,
@@ -23,6 +27,8 @@ export const mockUsers: User[] = [
     city: "京都",
     image: require("./assets/profiles/profile3.jpg"),
     isOnline: true,
+    gender: "female",
+    isLiked: true,
   },
   {
     id: 4,
@@ -30,6 +36,8 @@ export const mockUsers: User[] = [
     age: 26,
     city: "横浜",
     image: require("./assets/profiles/profile4.jpg"),
+    gender: "female",
+    isLiked: true,
   },
   {
     id: 5,
@@ -38,6 +46,8 @@ export const mockUsers: User[] = [
     city: "名古屋",
     image: require("./assets/profiles/profile5.jpg"),
     isOnline: true,
+    gender: "female",
+    isLiked: true,
   },
   {
     id: 6,
@@ -45,6 +55,8 @@ export const mockUsers: User[] = [
     age: 31,
     city: "神戸",
     image: require("./assets/profiles/profile6.jpg"),
+    gender: "female",
+    isLiked: true,
   },
   {
     id: 7,
@@ -52,8 +64,12 @@ export const mockUsers: User[] = [
     age: 26,
     city: "福岡",
     image: require("./assets/profiles/profile7.jpg"),
+    gender: "female",
+    isLiked: true,
   },
   {
+    gender: "female",
+    isLiked: true,
     id: 8,
     name: "なな",
     age: 25,
