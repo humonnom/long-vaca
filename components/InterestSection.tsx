@@ -74,9 +74,11 @@ export const InterestSection = (props: InterestSectionProps) => {
       {props.simple ? (
         <View style={styles.interestContent}>
           <View style={styles.interestText}>
-            <Text style={styles.interestDescription}>
-              이 분들이 회원님에게 관심을 보냈어요!
-            </Text>
+            {!props.simple && (
+              <Text style={styles.interestDescription}>
+                이 분들이 회원님에게 관심을 보냈어요!
+              </Text>
+            )}
             <Text style={styles.launchMessage}>{props.lunchMessage}</Text>
           </View>
         </View>

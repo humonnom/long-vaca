@@ -37,9 +37,9 @@ export const EmptyScreenComponent = ({
         </Text>
 
         <InterestSection
-          lunchMessage='나에게 관심을 보인 사람들을 자세히 확인해보세요.'
+          lunchMessage='받은 관심에 대해서 자세히 알아보세요.'
           onPressButton={onNavigateToProfile}
-          buttonText='마이페이지에서 확인하기'
+          buttonText='프로필 페이지에서 확인하기'
           simple
         />
       </View>
