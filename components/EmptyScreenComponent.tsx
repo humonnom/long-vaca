@@ -7,28 +7,25 @@ import { Header } from "./Header";
 interface EmptyScreenComponentProps {
   onNavigateToProfile: () => void;
   featureName: string;
-  icon?: string;
+  icon: string;
 }
 export const EmptyScreenComponent = ({
   onNavigateToProfile,
   featureName,
-  icon = "favorite",
+  icon,
 }: EmptyScreenComponentProps) => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
       <Header title={featureName} subtitle='' />
 
-      {/* Development Status */}
       <View style={styles.developmentBanner}>
         <Icon name='construction' size={24} color='#FF9800' />
         <Text style={styles.developmentText}>개발 중인 기능입니다</Text>
       </View>
 
-      {/* Content */}
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <Icon name='favorite' size={80} color='#FFCBD2' />
+          <Icon name={icon} size={80} color='#FFCBD2' />
         </View>
 
         <Text style={styles.mainTitle}>{featureName} 기능 준비 중</Text>
