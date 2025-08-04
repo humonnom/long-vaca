@@ -3,7 +3,7 @@
 import * as React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import type { User } from "../types";
+import type { User } from "../../types";
 
 interface UserCardProps {
   user: User;

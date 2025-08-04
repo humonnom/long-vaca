@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { User } from "../types";
+import { User } from "../../types";
 import { UserCard } from "./UserCard";
 
 interface UserGridProps {
