@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import {
   View,
@@ -12,6 +10,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { InterestSection } from "../../components/InterestSection";
+import { Header } from "../../components/Header";
 
 export const ProfileScreen = () => {
   const [hasRequestedLaunch, setHasRequestedLaunch] = React.useState(false);
@@ -26,10 +25,7 @@ export const ProfileScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>마이 프로필</Text>
-      </View>
+      <Header title='프로필' subtitle='내 정보 및 설정' />
 
       {/* Profile Section */}
       <View style={styles.profileSection}>

@@ -1,11 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export const Header = () => {
+interface HeaderProps {
+  title: string;
+  subtitle: string;
+}
+
+export const Header = (props: HeaderProps) => {
   return (
     <View style={styles.header}>
-      <Text style={styles.headerTitle}>둘러보기</Text>
-      <Text style={styles.headerSubtitle}>서울, 대한민국</Text>
+      <Text style={styles.headerTitle}>{props.title}</Text>
+      <Text style={styles.headerSubtitle}>{props.subtitle}</Text>
     </View>
   );
 };

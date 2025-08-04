@@ -15,19 +15,24 @@ const mockInterestedUsers: InterestedUser[] = [
   { id: 5, image: require("../assets/profiles/profile6.jpg") },
 ];
 
-type InterestSectionProps =
-  | {
-      lunchMessage: string;
-      onPressButton: () => void;
-      buttonText: string;
-      renderButton?: never;
-    }
-  | {
-      lunchMessage: string;
-      onPressButton?: never;
-      buttonText?: never;
-      renderButton?: () => React.ReactNode;
-    };
+type InterestSectionBasicProps = {
+  lunchMessage: string;
+  simple?: boolean;
+};
+
+type InterestSectionProps = InterestSectionBasicProps &
+  (
+    | {
+        onPressButton: () => void;
+        buttonText: string;
+        renderButton?: never;
+      }
+    | {
+        onPressButton?: never;
+        buttonText?: never;
+        renderButton?: () => React.ReactNode;
+      }
+  );
 
 const renderStackedAvatars = () => {
   const displayUsers = mockInterestedUsers.slice(0, 4);
@@ -66,15 +71,26 @@ export const InterestSection = (props: InterestSectionProps) => {
         <Text style={styles.interestTitle}>받은 관심</Text>
         <Text style={styles.interestCount}>{mockInterestedUsers.length}명</Text>
       </View>
-      <View style={styles.interestContent}>
-        {renderStackedAvatars()}
-        <View style={styles.interestText}>
-          <Text style={styles.interestDescription}>
-            이 분들이 회원님에게 관심을 보냈어요!
-          </Text>
-          <Text style={styles.launchMessage}>{props.lunchMessage}</Text>
+      {props.simple ? (
+        <View style={styles.interestContent}>
+          <View style={styles.interestText}>
+            <Text style={styles.interestDescription}>
+              이 분들이 회원님에게 관심을 보냈어요!
+            </Text>
+            <Text style={styles.launchMessage}>{props.lunchMessage}</Text>
+          </View>
         </View>
-      </View>
+      ) : (
+        <View style={styles.interestContent}>
+          {renderStackedAvatars()}
+          <View style={styles.interestText}>
+            <Text style={styles.interestDescription}>
+              이 분들이 회원님에게 관심을 보냈어요!
+            </Text>
+            <Text style={styles.launchMessage}>{props.lunchMessage}</Text>
+          </View>
+        </View>
+      )}
       {/* Navigate to Profile Button */}
       {props?.renderButton ? (
         props.renderButton()

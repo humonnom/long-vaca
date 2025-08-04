@@ -5,9 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { HomeScreen } from "./screens/HomeScreen";
-import { MatchScreen } from "./screens/MatchScreen";
-import { MessageScreen } from "./screens/MessageScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import { EmptyScreenComponent } from "./components/EmptyScreenComponent";
 
 const Tab = createBottomTabNavigator();
 
@@ -53,22 +52,26 @@ export default function App() {
           <Tab.Screen
             name='매치'
             component={(props: any) => (
-              <MatchScreen
+              <EmptyScreenComponent
                 {...props}
                 onNavigateToProfile={() => {
                   props.navigation.navigate("프로필");
                 }}
+                featureName='매치'
+                icon='favorite'
               />
             )}
           />
           <Tab.Screen
             name='메시지'
             component={(props: any) => (
-              <MessageScreen
+              <EmptyScreenComponent
                 {...props}
                 onNavigateToProfile={() => {
                   props.navigation.navigate("프로필");
                 }}
+                featureName='메시지'
+                icon='chat'
               />
             )}
           />
