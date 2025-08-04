@@ -50,8 +50,28 @@ export default function App() {
           })}
         >
           <Tab.Screen name='둘러보기' component={HomeScreen} />
-          <Tab.Screen name='매치' component={MatchScreen} />
-          <Tab.Screen name='메시지' component={MessageScreen} />
+          <Tab.Screen
+            name='매치'
+            component={(props: any) => (
+              <MatchScreen
+                {...props}
+                onNavigateToProfile={() => {
+                  props.navigation.navigate("프로필");
+                }}
+              />
+            )}
+          />
+          <Tab.Screen
+            name='메시지'
+            component={(props: any) => (
+              <MessageScreen
+                {...props}
+                onNavigateToProfile={() => {
+                  props.navigation.navigate("프로필");
+                }}
+              />
+            )}
+          />
           <Tab.Screen name='프로필' component={ProfileScreen} />
         </Tab.Navigator>
       </NavigationContainer>

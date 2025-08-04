@@ -1,10 +1,100 @@
+"use client";
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { InterestSection } from "../../components/InterestSection";
 
-export const MessageScreen = () => {
+interface MessagePageProps {
+  onNavigateToProfile: () => void;
+}
+
+export const MessageScreen = ({ onNavigateToProfile }: MessagePageProps) => {
   return (
-    <View className="flex-1 bg-[#FDFDFD] justify-center items-center">
-      <Text className="text-2xl font-bold text-[#333]">메시지</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>메시지</Text>
+      </View>
+
+      {/* Development Status */}
+      <View style={styles.developmentBanner}>
+        <Icon name='construction' size={24} color='#FF9800' />
+        <Text style={styles.developmentText}>개발 중인 기능입니다</Text>
+      </View>
+
+      {/* Content */}
+      <View style={styles.content}>
+        <View style={styles.iconContainer}>
+          <Icon name='chat-bubble' size={80} color='#FFCBD2' />
+        </View>
+
+        <Text style={styles.mainTitle}>메시지 기능 준비 중</Text>
+        <Text style={styles.subtitle}>
+          곧 멋진 채팅 기능으로 만나뵙겠습니다!
+        </Text>
+
+        <InterestSection
+          lunchMessage='나에게 관심을 보인 사람들을 자세히 확인해보세요.'
+          onPressButton={onNavigateToProfile}
+          buttonText='마이페이지에서 확인하기'
+        />
+      </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#FDFDFD",
+  },
+  header: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: "#FDFDFD",
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#333",
+    textAlign: "center",
+  },
+  developmentBanner: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFF3E0",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    marginHorizontal: 20,
+    borderRadius: 12,
+    gap: 8,
+  },
+  developmentText: {
+    fontSize: 14,
+    color: "#FF9800",
+    fontWeight: "600",
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 40,
+  },
+  iconContainer: {
+    alignItems: "center",
+    marginBottom: 24,
+  },
+  mainTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    textAlign: "center",
+    marginBottom: 40,
+  },
+});
