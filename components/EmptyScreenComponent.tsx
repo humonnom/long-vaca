@@ -30,7 +30,7 @@ export const EmptyScreenComponent = ({
 
         <Text style={styles.mainTitle}>{featureName} 기능 준비 중</Text>
         <Text style={styles.subtitle}>
-          곧 멋진 {featureName} 기능으로 만나뵙겠습니다!
+          열심히 만들고 있어요. 잠시만 기다려주세요.
         </Text>
 
         <InterestSection

@@ -7,7 +7,10 @@ import { mockUsers } from "../../data";
 export const HomeScreen = () => {
   return (
     <View style={{ flex: 1, backgroundColor: "#FDFDFD" }}>
-      <Header title='둘러보기' subtitle='새로운 인연이 기다리고 있어요' />
+      <Header
+        title='새로운 인연 찾기'
+        subtitle='하트를 눌러 관심을 표현해보세요.'
+      />
       <UserGrid users={mockUsers} />
     </View>
   );

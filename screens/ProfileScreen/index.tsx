@@ -44,7 +44,7 @@ export const ProfileScreen = () => {
 
       <View style={styles.interestSection}>
         <InterestSection
-          lunchMessage='앱이 정식 런치되면 해당 인연들과 연결될 수 있습니다.'
+          lunchMessage='앱 정식 런치 후, 매치된 분들과 연결될 수 있어요.'
           renderButton={() => (
             <TouchableOpacity
               style={[
