@@ -11,6 +11,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { InterestSection } from "../../components/InterestSection";
 import { Header } from "../../components/Header";
+import {supabase} from "../../lib/supabase";
 
 export const ProfileScreen = () => {
   const [hasRequestedLaunch, setHasRequestedLaunch] = React.useState(false);
@@ -22,6 +23,27 @@ export const ProfileScreen = () => {
       "정식 런치 알림을 받으실 수 있도록 등록되었습니다!"
     );
   };
+
+  const handleLogout = () => {
+    Alert.alert(
+        "로그아웃",
+        "정말 로그아웃 하시겠습니까?",
+        [
+          {
+            text: "취소",
+            style: "cancel"
+          },
+          {
+            text: "로그아웃",
+            style: "destructive",
+            onPress: async() => {
+                await supabase.auth.signOut();
+                Alert.alert("로그아웃 완료", "성공적으로 로그아웃되었습니다.");
+            }
+          }
+        ]
+    )
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -72,6 +94,13 @@ export const ProfileScreen = () => {
             </TouchableOpacity>
           )}
         />
+      </View>
+
+      <View style={styles.logoutContainer}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Icon name="logout" size={20} color="#666" />
+          <Text style={styles.logoutText}>로그아웃</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -163,5 +192,24 @@ const styles = StyleSheet.create({
   },
   launchButtonTextDisabled: {
     color: "#4CAF50",
+  },
+
+  logoutContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderTopWidth: 1,
+    borderTopColor: "#F0F0F0",
+  },
+  logoutButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    gap: 8,
+  },
+  logoutText: {
+    fontSize: 16,
+    color: "#666",
+    fontWeight: "500",
   },
 });

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native";
+import {SafeAreaView, Text} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -9,10 +9,8 @@ import { ProfileScreen } from "./screens/ProfileScreen";
 import { EmptyScreenComponent } from "./components/EmptyScreenComponent";
 import { useState, useEffect } from 'react'
 import { supabase } from './lib/supabase'
-import Auth from './components/Auth'
-import Account from './components/Account'
-import { View } from 'react-native'
 import { Session } from '@supabase/supabase-js'
+import { AuthScreen } from "./screens/AuthScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,12 +24,6 @@ export default function App() {
             setSession(session)
         })
     }, [])
-
-    return (
-        <View>
-            {session && session.user ? <Account key={session.user.id} session={session} /> : <Auth />}
-        </View>
-    )
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FDFDFD" }}>
@@ -71,22 +63,20 @@ export default function App() {
           })}
         >
           <Tab.Screen name='둘러보기' component={HomeScreen} />
-          <Tab.Screen
-            name='매치'
-            component={(props: any) => (
-              <EmptyScreenComponent
-                {...props}
-                onNavigateToProfile={() => {
-                  props.navigation.navigate("프로필");
-                }}
-                featureName='매치'
-                icon='favorite'
-              />
-            )}
-          />
-          <Tab.Screen
-            name='메시지'
-            component={(props: any) => (
+        <Tab.Screen name='매치'>
+          {(props: any) => (
+            <EmptyScreenComponent
+              {...props}
+              onNavigateToProfile={() => {
+                props.navigation.navigate("프로필");
+              }}
+              featureName='매치'
+              icon='favorite'
+            />
+          )}
+        </Tab.Screen>
+         <Tab.Screen name='메시지'>
+            {(props: any) => (
               <EmptyScreenComponent
                 {...props}
                 onNavigateToProfile={() => {
@@ -96,8 +86,8 @@ export default function App() {
                 icon='chat'
               />
             )}
-          />
-          <Tab.Screen name='프로필' component={ProfileScreen} />
+          </Tab.Screen>
+          <Tab.Screen name='프로필' component={session && session.user ? ProfileScreen : AuthScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>
