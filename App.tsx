@@ -7,23 +7,13 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
 import { EmptyScreenComponent } from "./components/EmptyScreenComponent";
-import { useState, useEffect } from 'react'
-import { supabase } from './lib/supabase'
-import { Session } from '@supabase/supabase-js'
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { AuthScreen } from "./screens/AuthScreen";
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-    const [session, setSession] = useState<Session | null>(null)
-    useEffect(() => {
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setSession(session)
-        })
-        supabase.auth.onAuthStateChange((_event, session) => {
-            setSession(session)
-        })
-    }, [])
+const AppContent = () => {
+  const { session } = useAuth();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FDFDFD" }}>
@@ -91,5 +81,13 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }

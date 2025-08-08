@@ -32,12 +32,16 @@ export const AuthScreen = () =>  {
 
         setLoading(true)
         try {
-            const { error } = await supabase.auth.signInWithPassword({
+            const { data: { session }, error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password,
             })
-            if (error) Alert.alert(error.message)
-            else Alert.alert("로그인 성공", "환영합니다!")
+            if (error) {
+                Alert.alert("로그인 실패", error.message)
+            } else if (session) {
+                Alert.alert("로그인 성공", "환영합니다!")
+                // AuthContext가 자동으로 세션 변화를 감지하여 상태 업데이트
+            }
         } catch (error) {
             Alert.alert("로그인 실패", "이메일 또는 비밀번호를 확인해주세요.")
         }
@@ -62,19 +66,25 @@ export const AuthScreen = () =>  {
 
         setLoading(true)
         try {
-            // 실제 Supabase 연동 시 사용할 코드
-            // const {
-            //     data: { session },
-            //     error,
-            // } = await supabase.auth.signUp({
-            //     email: email,
-            //     password: password,
-            // })
-            // if (error) Alert.alert(error.message)
-            // if (!session) Alert.alert('이메일 인증을 확인해주세요!')
-
-            // 임시 회원가입 성공 처리
-            Alert.alert("회원가입 성공", "이메일 인증을 확인해주세요!")
+            const {
+                data: { session },
+                error,
+            } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+            })
+            
+            if (error) {
+                Alert.alert("회원가입 실패", error.message)
+            } else if (session) {
+                // 즉시 로그인된 경우 (이메일 인증이 비활성화된 경우)
+                Alert.alert("회원가입 성공", "환영합니다!")
+                // AuthContext가 자동으로 세션 변화를 감지하여 상태 업데이트
+            } else {
+                // 이메일 인증이 필요한 경우
+                Alert.alert("회원가입 성공", "이메일 인증을 확인해주세요!")
+                setIsSignUp(false) // 로그인 화면으로 전환
+            }
         } catch (error) {
             Alert.alert("회원가입 실패", "다시 시도해주세요.")
         }
